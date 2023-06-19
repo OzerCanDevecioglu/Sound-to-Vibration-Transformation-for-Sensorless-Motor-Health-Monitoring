@@ -26,19 +26,22 @@ In contrast, Machine B's design consists of a DC motor, two single-row bearings,
 270 seconds of vibration/sound data for each operating condition for a healthy bearing are available in this dataset. As a result, the total time of the healthy bearing vibration data is 270 x 6 x 1 x 5 = 8,100 seconds. 30 seconds of vibration/sound data for each working condition for each faulty bearing are available.  This results in a 2:1 ratio of the faulty to healthy data, with a total time of 30 x 18 x 6 x 1 x 5 = 16,200 seconds. As a result, the dataset for machine B lasts 24,300 seconds in total (6.75 hours). The sound of each machine was simultaneously recorded with the same sampling frequency as the vibration data. The QU-DMBF is publicly shared in [Repo](https://github.com/OzerCanDevecioglu/Zero-Shot-Bearing-Fault-Detection-by-Blind-Domain-Transition) to serve as the dual-machine bearing fault detection benchmark.
 As opposed to the challenges of vibration data collection, there is a crucial advantage for the sound signal acquisition as such a location sensitivity does not exist. This has been confirmed in a [Recent Study](https://github.com/OzerCanDevecioglu/Zero-Shot-Bearing-Fault-Detection-by-Blind-Domain-Transition) where even a DL classifier trained on the data acquired by one sensor may fail to detect certain faults in another’s data. The same study has further shown that the most reliable vibration data for fault detection is acquired from the closest accelerometer to the bearings, i.e., accelerometer-1 for both machines. So, we have selected this accelerometer for training the transformers of both machines and used them to synthesize the corresponding vibration signal, which is then evaluated with the actual vibration signal.
 
-- Full QU-DMBF dataset with user manual can be downloaded from the given [link].
+- Full QU-DMBF dataset with user manual can be downloaded from the given [link] (https://drive.google.com/drive/u/2/folders/1be8PHxnLQAk8y2yb1ebwGnQdM-XNqKrZ).
 ## Run
 
 #### Train
 
 ![image](https://github.com/OzerCanDevecioglu/Sound-to-Vibration-Transformation-for-Sensorless-Motor-Health-Monitoring/assets/98646583/515a71de-048d-41cb-80b0-98a9dc1e03de)
 
-- Training/Validation/Test dataset for two motors can be downloaded from the given [link](). Download train, validation and test data to the "tmats/", "vmats/", and "temats/" folders folders respectively. 
-- Start training (Stage-1)
+- Training/Validation/Test dataset for two motors can be downloaded from the given [link](https://drive.google.com/drive/u/2/folders/1be8PHxnLQAk8y2yb1ebwGnQdM-XNqKrZ). Download train, validation and test data to the "trmats/", "valmats/", and "tesmats/" folders respectively. 
+- Start training 
 ```http
-  python Op_GAN_train.py
+  Audio2Vib.py
 ```
-
+- Start testing 
+```http
+  test.py
+```
 ## Prerequisites
 - Pyton 3
 - Pytorch
